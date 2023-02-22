@@ -6,7 +6,9 @@ const express = require("express"),
 app.use(cors());
 app.use(express.json());
 
+// danh sach tasks
 let todolist = [];
+//id
 let id = 0;
 //code
 app
@@ -44,6 +46,7 @@ app
     res.send(todolist);
   })
 
+  //search
   .get("/todo/:id", function (req, res) {
     const todoIdx = req.params.id;
     const todo = todolist.filter((task) => task.id == todoIdx)[0];
