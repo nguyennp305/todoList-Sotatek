@@ -115,6 +115,7 @@ const Task = (props) => {
                       // showIcon
                       selected={dueDate}
                       onChange={(date) => setDueDate(date)}
+                      dateFormat="dd/MM/yyyy"
                     />
                   </div>
                   <div className="col piority">

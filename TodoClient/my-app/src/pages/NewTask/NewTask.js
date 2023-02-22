@@ -10,7 +10,7 @@ const NewTask = (props) => {
   const [dueDate, setDueDate] = useState(new Date());
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("low");
+  const [priority, setPriority] = useState("normal");
 
   const handleChangetitle = (e) => {
     setTitle(e.target.value);
@@ -31,23 +31,46 @@ const NewTask = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTask = {
-      title: title,
-      description: description,
-      dueDate: dueDate.toLocaleDateString(),
-      priority: priority,
-      done: false,
-    };
 
-    axios
-      .post(`${config.api.url}/add`, { newTask: newTask })
-      .then((res) => {
-        console.log(res.data);
-        props.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    var currentDate = new Date(); // Lấy giá trị ngày tháng hiện tại
+    var selectedDate = new Date(dueDate); // Lấy giá trị ngày tháng được chọn trong DatePicker
+  
+    // Tạo đối tượng Date mới với các giá trị ngày tháng được chọn và ngày tháng hiện tại, nhưng đều có giờ, phút, giây và mili giây là 0
+    var currentDateTimeZero = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0, 0);
+    var selectedDateTimeZero = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 0, 0, 0, 0);
+  
+    if (title === "") {
+      window.alert("Title cannot be blank");
+    } else  if (selectedDateTimeZero < currentDateTimeZero) {
+      window.alert("Date cannot be in the past");
+
+    }
+    else {
+      const newTask = {
+        title: title,
+        description: description,
+        dueDate: dueDate.toLocaleDateString(),
+        priority: priority,
+        done: false,
+      };
+  
+      axios
+        .post(`${config.api.url}/add`, { newTask: newTask })
+        .then((res) => {
+          console.log(res.data);
+          props.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  
+        setDueDate(new Date());
+        setTitle("");
+        setDescription("");
+        setPriority("normal");
+    }
+
+    
   };
 
   return (
