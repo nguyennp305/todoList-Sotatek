@@ -1,0 +1,58 @@
+.todo-list {
+    input, textarea {
+     min-width: 140px;
+     width: 100%;
+    }
+    textarea {
+     height: auto;
+     min-height: 140px;
+    }
+    .due-date {
+        input {
+            height: 38px;
+        }
+    }
+ }
+ .a-work {
+    border: 2px solid black;
+    display: flex;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    input {
+        width: 5% !important;
+min-width: 20px !important;
+    }
+    button {
+        border: 2px solid black;
+        border-radius: 10px;
+        margin-left: 5px;
+    }
+    
+}
+ .form-update {
+    border: 2px solid black;
+    padding: 5%;
+    margin: 0 0 5% 0;
+    
+ }
+ .button-update {
+    margin-top: 10px;
+     button {
+         min-width: 140px;
+         width: 100%;
+         border: 2px solid black;
+         border-radius: 10px;
+         background-color: #99FF66;
+     }
+ }
+ .bulk-action {
+    display: flex;
+    padding: 10px;
+    border: 2px solid black;
+    button {
+        border: 2px solid black;
+         border-radius: 10px;
+         margin-left: 5px;
+    }
+ }
