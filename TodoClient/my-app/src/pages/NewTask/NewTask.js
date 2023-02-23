@@ -37,6 +37,7 @@ const NewTask = (props) => {
   
     // Tạo đối tượng Date mới với các giá trị ngày tháng được chọn và ngày tháng hiện tại, nhưng đều có giờ, phút, giây và mili giây là 0
     var currentDateTimeZero = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0, 0);
+    console.log(currentDateTimeZero);
     var selectedDateTimeZero = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), 0, 0, 0, 0);
   
     if (title === "") {

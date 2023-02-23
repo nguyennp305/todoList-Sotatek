@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+
+
 import axios from "axios";
 import config from "../../config";
 
@@ -10,12 +14,15 @@ const Task = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("low");
-  const [dueDate, setDueDate] = useState();
+  const [dueDate, setDueDate] = useState(new Date());
+
   const [done, setDone] = useState();
+
 
   useEffect(() => {
     setId(props.task.id);
-    setDueDate(new Date(props.task.dueDate));
+    setDueDate(new Date(moment(props.task.dueDate, 'DD/MM/YYYY').format('MM/DD/YYYY')));
+    console.log(new Date(moment(props.task.dueDate, 'DD/MM/YYYY').format('MM/DD/YYYY')));
     setTitle(props.task.title);
     setDescription(props.task.description);
     setPriority(props.task.priority);
@@ -23,6 +30,10 @@ const Task = (props) => {
   }, [props.task]);
 
   const handleOpenUpdateModal = () => {
+    let currentDate = new Date();
+    console.log(currentDate);
+    console.log(dueDate.toLocaleDateString());
+
     setOpenUpdateModal(!openUpdateModal);
   };
 
@@ -45,6 +56,7 @@ const Task = (props) => {
       .then((res) => {
         props.reload();
       });
+      setOpenUpdateModal(!openUpdateModal);
   };
 
   const handleDelete = () => {
