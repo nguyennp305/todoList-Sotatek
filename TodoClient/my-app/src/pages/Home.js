@@ -17,19 +17,26 @@ const HomePage = () => {
   }, [reload]);
 
   const reloadPage = () => {
-    console.log("reload");
     setReload(!reload);
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{minWidth: '580px', width: '100%'}}>
       <div className="page-main row">
-        <div className="col col-left">
-          <div><h2><b>New Task</b></h2></div>
+        <div className="col col-left col-lg-6 col-md-12 col-sm-12">
+          <div>
+            <h2>
+              <b>New Task</b>
+            </h2>
+          </div>
           <NewTask reload={reloadPage} />
         </div>
-        <div className="col col-right">
-          <div><h2><b>Todo List</b></h2></div>
+        <div className="col col-right col-lg-6 col-md-12-col-sm-12">
+          <div>
+            <h2>
+              <b>Todo List</b>
+            </h2>
+          </div>
           <TodoList reload={reloadPage} listTask={listTask} />
         </div>
       </div>

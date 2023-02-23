@@ -68,7 +68,6 @@ const NewTask = (props) => {
       axios
         .post(`${config.api.url}/add`, { newTask: newTask })
         .then((res) => {
-          console.log(res.data);
           props.reload();
         })
         .catch((err) => {
@@ -112,7 +111,7 @@ const NewTask = (props) => {
             </div>
             <div className="col piority">
               <div style={{ display: "flex", marginTop: "10px" }}>
-                <b>Piority</b>
+                <b>Priority</b>
               </div>
               <select
                 className="form-select"

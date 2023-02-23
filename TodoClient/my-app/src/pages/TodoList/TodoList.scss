@@ -1,59 +1,58 @@
 .todo-list {
-    input, textarea {
-     min-width: 140px;
-     width: 100%;
-    }
-    textarea {
-     height: auto;
-     min-height: 140px;
-    }
-    .due-date {
-        input {
-            height: 38px;
-        }
-    }
- }
- .a-work {
-    border: 1px solid black;
-    display: flex;
-    padding: 10px;
-    margin-top: 15px;
-    // margin-bottom: 15px;
+  input,
+  textarea {
+    min-width: 140px;
+    width: 100%;
+  }
+  textarea {
+    height: auto;
+    min-height: 140px;
+  }
+  .due-date {
     input {
-        width: 5% !important;
-min-width: 20px !important;
+      height: 38px;
     }
-    button {
-        border: 1px solid black;
-        border-radius: 10px;
-        margin-left: 5px;
-    }
-    
+  }
 }
- .form-update {
+.a-work {
+  border: 1px solid black;
+  display: flex;
+  padding: 10px;
+  margin-top: 15px;
+  // margin-bottom: 15px;
+  input {
+    width: 5% !important;
+    min-width: 20px !important;
+  }
+  button {
     border: 1px solid black;
-    padding: 5%;
-    margin: 0 0 5% 0;
-    
- }
- .button-update {
-    margin-top: 10px;
-     button {
-         min-width: 140px;
-         width: 100%;
-         border: 1px solid black;
-         border-radius: 10px;
-         background-color: #99FF66;
-     }
- }
- .bulk-action {
-    display: flex;
-    padding: 10px;
-    background-color: #FFE4E1;
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+}
+.form-update {
+  border: 1px solid black;
+  padding: 5%;
+  margin: 0 0 5% 0;
+}
+.button-update {
+  margin-top: 10px;
+  button {
+    min-width: 140px;
+    width: 100%;
     border: 1px solid black;
-    button {
-        border: 1px solid black;
-         border-radius: 10px;
-         margin-left: 5px;
-    }
- }
+    border-radius: 10px;
+    background-color: #99ff66;
+  }
+}
+.bulk-action {
+  display: flex;
+  padding: 10px;
+  background-color: #ffe4e1;
+  border: 1px solid black;
+  button {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+}

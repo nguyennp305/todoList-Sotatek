@@ -1,9 +1,9 @@
 import React from "react";
-import './Task.scss';
+import "./Task.scss";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from 'moment';
+import moment from "moment";
 import axios from "axios";
 import config from "../../config";
 
@@ -18,11 +18,11 @@ const Task = (props) => {
 
   const [done, setDone] = useState();
 
-
   useEffect(() => {
     setId(props.task.id);
-    setDueDate(new Date(moment(props.task.dueDate, 'DD/MM/YYYY').format('MM/DD/YYYY')));
-    console.log(new Date(moment(props.task.dueDate, 'DD/MM/YYYY').format('MM/DD/YYYY')));
+    setDueDate(
+      new Date(moment(props.task.dueDate, "DD/MM/YYYY").format("MM/DD/YYYY"))
+    );
     setTitle(props.task.title);
     setDescription(props.task.description);
     setPriority(props.task.priority);
@@ -30,10 +30,6 @@ const Task = (props) => {
   }, [props.task]);
 
   const handleOpenUpdateModal = () => {
-    let currentDate = new Date();
-    console.log(currentDate);
-    console.log(dueDate.toLocaleDateString());
-
     setOpenUpdateModal(!openUpdateModal);
   };
 
@@ -68,30 +64,29 @@ const Task = (props) => {
     } else if (selectedDateTimeZero < currentDateTimeZero) {
       window.alert("Date cannot be in the past");
     } else {
-    const editTodo = {
-      title,
-      description,
-      dueDate: dueDate.toLocaleDateString(),
-      priority,
-      done: done,
-    };
+      const editTodo = {
+        title,
+        description,
+        dueDate: dueDate.toLocaleDateString(),
+        priority,
+        done: done,
+      };
 
-    console.log(editTodo);
+      console.log(editTodo);
 
-    axios
-      .put(`${config.api.url}/edit/${id}`, {
-        editTodo: editTodo,
-      })
-      .then((res) => {
-        props.reload();
-      });
+      axios
+        .put(`${config.api.url}/edit/${id}`, {
+          editTodo: editTodo,
+        })
+        .then((res) => {
+          props.reload();
+        });
       setOpenUpdateModal(!openUpdateModal);
     }
   };
 
   const handleDelete = () => {
     axios.delete(`${config.api.url}/delete/${id}`).then((res) => {
-      console.log(res.data);
       props.reload();
     });
   };
@@ -112,8 +107,6 @@ const Task = (props) => {
       done: !done,
     };
 
-    console.log(editTodo);
-
     axios
       .put(`${config.api.url}/edit/${id}`, {
         editTodo: editTodo,
@@ -130,14 +123,28 @@ const Task = (props) => {
         <>
           <div className="a-work" key={id}>
             <div style={{ width: "60%", minWidth: "200px", textAlign: "left" }}>
-              <input type="checkbox" checked={done} onClick={handleChangeDone} />
+              <input
+                type="checkbox"
+                defaultChecked={done}
+                onClick={handleChangeDone}
+              />
               <span>{title}</span>
             </div>
-            <div style={{ width: "40%", minWidth: "100px", textAlign: "right" }}>
-              <button type="submit" onClick={handleOpenUpdateModal} style={{ backgroundColor: "#99CCFF" }}>
+            <div
+              style={{ width: "40%", minWidth: "100px", textAlign: "right" }}
+            >
+              <button
+                type="submit"
+                onClick={handleOpenUpdateModal}
+                style={{ backgroundColor: "#99CCFF" }}
+              >
                 Detail
               </button>
-              <button type="submit" style={{ backgroundColor: "#FFFF33" }} onClick={handleDelete}>
+              <button
+                type="submit"
+                style={{ backgroundColor: "#FFFF33" }}
+                onClick={handleDelete}
+              >
                 Remove
               </button>
             </div>
@@ -145,14 +152,25 @@ const Task = (props) => {
           {openUpdateModal && (
             <form className="form-update">
               <div className="update">
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
                 <div>
-                  <div style={{ display: "flex",  marginTop: '10px' }}><b>Description</b></div>
-                  <textarea value={description} onChange={handleChangeDescription} />
+                  <div style={{ display: "flex", marginTop: "10px" }}>
+                    <b>Description</b>
+                  </div>
+                  <textarea
+                    value={description}
+                    onChange={handleChangeDescription}
+                  />
                 </div>
                 <div className="date-and-piority row">
                   <div className="col due-date">
-                    <div style={{ display: "flex",  marginTop: '10px' }}><b>Due Date</b></div>
+                    <div style={{ display: "flex", marginTop: "10px" }}>
+                      <b>Due Date</b>
+                    </div>
                     <DatePicker
                       // showIcon
                       selected={dueDate}
@@ -161,8 +179,14 @@ const Task = (props) => {
                     />
                   </div>
                   <div className="col piority">
-                    <div style={{ display: "flex",  marginTop: '10px' }}><b>Piority</b></div>
-                    <select className="form-select" value={priority} onChange={handleChangePriority}>
+                    <div style={{ display: "flex", marginTop: "10px" }}>
+                      <b>Priority</b>
+                    </div>
+                    <select
+                      className="form-select"
+                      value={priority}
+                      onChange={handleChangePriority}
+                    >
                       <option value="low">Low</option>
                       <option value="normal">Normal</option>
                       <option value="hight">Hight</option>

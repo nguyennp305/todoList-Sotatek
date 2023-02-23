@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Task from "../../components/Task/Task";
 import axios from "axios";
 import config from "../../config";
+import moment from "moment";
 
 const TodoList = (props) => {
   const [listTask, setListTask] = useState([]);
@@ -12,8 +13,12 @@ const TodoList = (props) => {
   useEffect(() => {
     //sort by dueDate
     props.listTask.sort((a, b) => {
-      return new Date(a.dueDate) - new Date(b.dueDate);
+      return (
+        new Date(moment(a.dueDate, "DD/MM/YYYY").format("MM/DD/YYYY")) -
+        new Date(moment(b.dueDate, "DD/MM/YYYY").format("MM/DD/YYYY"))
+      );
     });
+
     setListTask(props.listTask);
   }, [props.listTask]);
 
@@ -52,7 +57,7 @@ const TodoList = (props) => {
         <input type="text" placeholder="Search" onChange={handleSearch} />
       </div>
       {listTask.map((task) => {
-        return <Task task={task} reload={() => props.reload()} />;
+        return <Task task={task} key={task.id} reload={() => props.reload()} />;
       })}
       {openDeleteAll && (
         <div className="bulk-action">
