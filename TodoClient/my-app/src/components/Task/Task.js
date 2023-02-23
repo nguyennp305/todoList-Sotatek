@@ -1,9 +1,9 @@
+import React from "react";
+import './Task.scss';
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
-
-
 import axios from "axios";
 import config from "../../config";
 
@@ -39,6 +39,35 @@ const Task = (props) => {
 
   const handleUpdate = (e) => {
     if (e) e.preventDefault();
+    var currentDate = new Date(); // Lấy giá trị ngày tháng hiện tại
+    var selectedDate = new Date(dueDate); // Lấy giá trị ngày tháng được chọn trong DatePicker
+
+    // Tạo đối tượng Date mới với các giá trị ngày tháng được chọn và ngày tháng hiện tại, nhưng đều có giờ, phút, giây và mili giây là 0
+    var currentDateTimeZero = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDate(),
+      0,
+      0,
+      0,
+      0
+    );
+
+    var selectedDateTimeZero = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate(),
+      0,
+      0,
+      0,
+      0
+    );
+
+    if (title === "") {
+      window.alert("Title cannot be blank");
+    } else if (selectedDateTimeZero < currentDateTimeZero) {
+      window.alert("Date cannot be in the past");
+    } else {
     const editTodo = {
       title,
       description,
@@ -57,6 +86,7 @@ const Task = (props) => {
         props.reload();
       });
       setOpenUpdateModal(!openUpdateModal);
+    }
   };
 
   const handleDelete = () => {
@@ -115,14 +145,14 @@ const Task = (props) => {
           {openUpdateModal && (
             <form className="form-update">
               <div className="update">
-                <input type="text" value={title} />
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
                 <div>
-                  <div style={{ display: "flex" }}>Description</div>
+                  <div style={{ display: "flex",  marginTop: '10px' }}><b>Description</b></div>
                   <textarea value={description} onChange={handleChangeDescription} />
                 </div>
                 <div className="date-and-piority row">
                   <div className="col due-date">
-                    <div style={{ display: "flex" }}>Due Date</div>
+                    <div style={{ display: "flex",  marginTop: '10px' }}><b>Due Date</b></div>
                     <DatePicker
                       // showIcon
                       selected={dueDate}
@@ -131,7 +161,7 @@ const Task = (props) => {
                     />
                   </div>
                   <div className="col piority">
-                    <div style={{ display: "flex" }}>Piority</div>
+                    <div style={{ display: "flex",  marginTop: '10px' }}><b>Piority</b></div>
                     <select className="form-select" value={priority} onChange={handleChangePriority}>
                       <option value="low">Low</option>
                       <option value="normal">Normal</option>

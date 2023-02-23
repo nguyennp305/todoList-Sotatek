@@ -1,0 +1,16 @@
+.form-update {
+    border-top: none;
+    input, textarea {
+     min-width: 140px;
+     width: 100%;
+    }
+    textarea {
+     height: auto;
+     min-height: 140px;
+    }
+    .due-date {
+     input {
+         height: 38px;
+     }
+ }
+ }

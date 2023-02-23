@@ -25,11 +25,11 @@ const HomePage = () => {
     <div className="container">
       <div className="page-main row">
         <div className="col col-left">
-          <div>New Task</div>
+          <div><h2><b>New Task</b></h2></div>
           <NewTask reload={reloadPage} />
         </div>
         <div className="col col-right">
-          <div>Todo List</div>
+          <div><h2><b>Todo List</b></h2></div>
           <TodoList reload={reloadPage} listTask={listTask} />
         </div>
       </div>

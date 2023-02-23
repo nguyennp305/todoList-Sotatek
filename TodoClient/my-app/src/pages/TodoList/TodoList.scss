@@ -14,7 +14,7 @@
     }
  }
  .a-work {
-    border: 2px solid black;
+    border: 1px solid black;
     display: flex;
     padding: 10px;
     margin-top: 15px;
@@ -24,14 +24,14 @@
 min-width: 20px !important;
     }
     button {
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 10px;
         margin-left: 5px;
     }
     
 }
  .form-update {
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 5%;
     margin: 0 0 5% 0;
     
@@ -41,7 +41,7 @@ min-width: 20px !important;
      button {
          min-width: 140px;
          width: 100%;
-         border: 2px solid black;
+         border: 1px solid black;
          border-radius: 10px;
          background-color: #99FF66;
      }
@@ -49,9 +49,10 @@ min-width: 20px !important;
  .bulk-action {
     display: flex;
     padding: 10px;
-    border: 2px solid black;
+    background-color: #FFE4E1;
+    border: 1px solid black;
     button {
-        border: 2px solid black;
+        border: 1px solid black;
          border-radius: 10px;
          margin-left: 5px;
     }
